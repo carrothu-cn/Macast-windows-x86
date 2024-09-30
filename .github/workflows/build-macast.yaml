@@ -67,7 +67,6 @@ jobs:
 
       - name: Install Requirement
         run: |
-          python
           pip3 install -r requirements/common.txt
           pip3 install pyinstaller
           $client = new-object System.Net.WebClient
