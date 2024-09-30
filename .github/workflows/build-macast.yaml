@@ -87,7 +87,7 @@ jobs:
           cp dist/Macast.exe Macast-Windows-v${VERSION}-x86.exe
           pyinstaller --noconfirm -F --additional-hooks-dir=. --add-data="macast/.version;." --add-data="macast/xml/*;macast/xml"  --add-data="i18n/zh_CN/LC_MESSAGES/*.mo;i18n/zh_CN/LC_MESSAGES" --add-data="macast/assets/*;macast/assets" --add-data="macast/assets/fonts/*;macast/assets/fonts" --add-binary="bin/mpv.exe;bin" --icon=macast/assets/icon.ico Macast.py
           cp dist/Macast.exe Macast-Windows-v${VERSION}-x86-debug.exe
-          echo "::set-output name=status::success"
+          echo "status=success" >> $GITHUB_OUTPUT
 
       - name: Upload dist
         uses: actions/upload-artifact@v4
