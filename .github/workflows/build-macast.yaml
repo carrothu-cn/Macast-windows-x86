@@ -65,7 +65,7 @@ jobs:
         run: |
           $client = new-object System.Net.WebClient
           $client.DownloadFile('https://www.python.org/ftp/python/3.12.6/python-3.12.6.exe','python.exe')
-          python.exe /quiet InstallAllUsers=1 PrependPath=1
+          ./python.exe /quiet InstallAllUsers=1 PrependPath=1
           pip3 install -r requirements/common.txt
           pip3 install pyinstaller
           $client.DownloadFile('https://github.com/carrothu-cn/Macast-windows-x86/releases/download/Dependence/mpv-0.34.0-i686.7z','mpv.7z')
