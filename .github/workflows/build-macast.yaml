@@ -66,6 +66,7 @@ jobs:
           $client = new-object System.Net.WebClient
           $client.DownloadFile('https://www.python.org/ftp/python/3.12.6/python-3.12.6.exe','python.exe')
           ./python.exe /quiet InstallAllUsers=1 PrependPath=1
+          python
           pip3 install -r requirements/common.txt
           pip3 install pyinstaller
           $client.DownloadFile('https://github.com/carrothu-cn/Macast-windows-x86/releases/download/Dependence/mpv-0.34.0-i686.7z','mpv.7z')
@@ -81,9 +82,9 @@ jobs:
           echo "DIST_EXE=Macast-Windows-v${VERSION}-x86.exe" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           echo "DIST_EXE_DEBUG=Macast-Windows-v${VERSION}-x86-debug.exe" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           echo "VERSION=v${VERSION}" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          pyinstaller --32 --noconfirm -F -w --additional-hooks-dir=. --add-data="macast/.version;." --add-data="macast/xml/*;macast/xml"  --add-data="i18n/zh_CN/LC_MESSAGES/*.mo;i18n/zh_CN/LC_MESSAGES" --add-data="macast/assets/*;macast/assets" --add-data="macast/assets/fonts/*;macast/assets/fonts" --add-binary="bin/mpv.exe;bin" --icon=macast/assets/icon.ico Macast.py
+          pyinstaller --noconfirm -F -w --additional-hooks-dir=. --add-data="macast/.version;." --add-data="macast/xml/*;macast/xml"  --add-data="i18n/zh_CN/LC_MESSAGES/*.mo;i18n/zh_CN/LC_MESSAGES" --add-data="macast/assets/*;macast/assets" --add-data="macast/assets/fonts/*;macast/assets/fonts" --add-binary="bin/mpv.exe;bin" --icon=macast/assets/icon.ico Macast.py
           cp dist/Macast.exe Macast-Windows-v${VERSION}-x86.exe
-          pyinstaller --32 --noconfirm -F --additional-hooks-dir=. --add-data="macast/.version;." --add-data="macast/xml/*;macast/xml"  --add-data="i18n/zh_CN/LC_MESSAGES/*.mo;i18n/zh_CN/LC_MESSAGES" --add-data="macast/assets/*;macast/assets" --add-data="macast/assets/fonts/*;macast/assets/fonts" --add-binary="bin/mpv.exe;bin" --icon=macast/assets/icon.ico Macast.py
+          pyinstaller --noconfirm -F --additional-hooks-dir=. --add-data="macast/.version;." --add-data="macast/xml/*;macast/xml"  --add-data="i18n/zh_CN/LC_MESSAGES/*.mo;i18n/zh_CN/LC_MESSAGES" --add-data="macast/assets/*;macast/assets" --add-data="macast/assets/fonts/*;macast/assets/fonts" --add-binary="bin/mpv.exe;bin" --icon=macast/assets/icon.ico Macast.py
           cp dist/Macast.exe Macast-Windows-v${VERSION}-x86-debug.exe
           echo "::set-output name=status::success"
 
