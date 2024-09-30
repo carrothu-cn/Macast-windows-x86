@@ -63,9 +63,11 @@ jobs:
 
       - name: Install Requirement
         run: |
+          $client = new-object System.Net.WebClient
+          $client.DownloadFile('https://www.python.org/ftp/python/3.12.6/python-3.12.6.exe','python.exe')
+          python.exe /quiet InstallAllUsers=1 PrependPath=1
           pip3 install -r requirements/common.txt
           pip3 install pyinstaller
-          $client = new-object System.Net.WebClient
           $client.DownloadFile('https://github.com/carrothu-cn/Macast-windows-x86/releases/download/Dependence/mpv-0.34.0-i686.7z','mpv.7z')
           7z x -obin mpv.7z *.exe
           $client.DownloadFile('https://github.com/carrothu-cn/Macast-windows-x86/releases/download/Dependence/gettext0.21-iconv1.16-static-32.zip','gettext.zip')
