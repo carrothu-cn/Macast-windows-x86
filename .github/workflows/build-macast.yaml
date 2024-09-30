@@ -86,14 +86,14 @@ jobs:
           echo "::set-output name=status::success"
 
       - name: Upload dist
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: steps.compile.outputs.status == 'success'
         with:
           name: ${{ env.DIST_EXE }}
           path: ${{ env.DIST_EXE }}
 
       - name: Upload dist debug
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: steps.compile.outputs.status == 'success'
         with:
           name: ${{ env.DIST_EXE_DEBUG }}
